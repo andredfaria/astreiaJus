@@ -6,7 +6,7 @@ import Navigation from '@/components/Navigation';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'astreiaJus - Convênio Jurídico com Clube de Vantagens',
+  title: 'AstreiaJus - Convênio Jurídico com Clube de Vantagens',
   description: 'Acesso facilitado a serviços jurídicos com preços reduzidos. Planos a partir de R$ 59,90/mês.',
 };
 

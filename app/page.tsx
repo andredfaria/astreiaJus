@@ -25,19 +25,33 @@ import {
 import { useState } from 'react';
 
 export default function ClientPage() {
-  const [contactForm, setContactForm] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: ''
-  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  const handleContactSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Aqui você implementaria o envio do formulário
-    console.log('Formulário enviado:', contactForm);
-    alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
-    setContactForm({ name: '', email: '', phone: '', message: '' });
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    const formData = new FormData(event.currentTarget);
+    
+    try {
+      const response = await fetch('https://formsubmit.co/contato@astreiajus.com.br', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        (event.target as HTMLFormElement).reset();
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const features = [
@@ -67,7 +81,7 @@ export default function ClientPage() {
     {
       name: 'Maria Silva',
       role: 'Empresária',
-      content: 'O astreiaJus me ajudou a resolver uma questão trabalhista complexa com economia de mais de R$ 3.000 em honorários. Recomendo!',
+      content: 'O AstreiaJus me ajudou a resolver uma questão trabalhista complexa com economia de mais de R$ 3.000 em honorários. Recomendo!',
       rating: 5,
       image: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
     },
@@ -127,8 +141,9 @@ export default function ClientPage() {
                 <span className="text-yellow-400">Completa</span>
               </h1>
               <p className="text-xl mb-8 text-blue-100 leading-relaxed">
-                Um clube de assinatura jurídico, com acesso a advogados especializados, economizando até 70% em honorários
-                e tenha segurança jurídica.
+                Um clube de assinatura jurídico, com acesso a advogados
+                especializados, economizando até 70% em honorários e tenha
+                segurança jurídica.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
@@ -422,7 +437,10 @@ export default function ClientPage() {
 
             <Card>
               <CardContent className="p-6">
-                <form onSubmit={handleContactSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <input name="_captcha" type="hidden" value="false" />
+                  <input name="_template" type="hidden" value="table" />
+                  
                   <div>
                     <label
                       htmlFor="name"
@@ -431,14 +449,12 @@ export default function ClientPage() {
                       Nome Completo
                     </label>
                     <Input
+                      name="name"
                       id="name"
                       type="text"
                       required
-                      value={contactForm.name}
-                      onChange={(e) =>
-                        setContactForm({ ...contactForm, name: e.target.value })
-                      }
                       placeholder="Seu nome completo"
+                      disabled={isSubmitting}
                     />
                   </div>
 
@@ -450,17 +466,12 @@ export default function ClientPage() {
                       E-mail
                     </label>
                     <Input
+                      name="email"
                       id="email"
                       type="email"
                       required
-                      value={contactForm.email}
-                      onChange={(e) =>
-                        setContactForm({
-                          ...contactForm,
-                          email: e.target.value,
-                        })
-                      }
                       placeholder="seu@email.com"
+                      disabled={isSubmitting}
                     />
                   </div>
 
@@ -472,17 +483,12 @@ export default function ClientPage() {
                       Telefone
                     </label>
                     <Input
+                      name="phone"
                       id="phone"
                       type="tel"
                       required
-                      value={contactForm.phone}
-                      onChange={(e) =>
-                        setContactForm({
-                          ...contactForm,
-                          phone: e.target.value,
-                        })
-                      }
                       placeholder="(11) 99999-9999"
+                      disabled={isSubmitting}
                     />
                   </div>
 
@@ -494,25 +500,49 @@ export default function ClientPage() {
                       Mensagem
                     </label>
                     <Textarea
+                      name="message"
                       id="message"
                       required
-                      value={contactForm.message}
-                      onChange={(e) =>
-                        setContactForm({
-                          ...contactForm,
-                          message: e.target.value,
-                        })
-                      }
                       placeholder="Como podemos ajudar você?"
                       rows={4}
+                      disabled={isSubmitting}
                     />
                   </div>
 
+                  {submitStatus === 'success' && (
+                    <div className="p-4 bg-green-50 border border-green-200 rounded-md">
+                      <div className="flex items-center">
+                        <CheckCircle className="h-5 w-5 text-green-500 mr-2" />
+                        <span className="text-green-800 font-medium">
+                          Mensagem enviada com sucesso! Entraremos em contato em breve.
+                        </span>
+                      </div>
+                    </div>
+                  )}
+
+                  {submitStatus === 'error' && (
+                    <div className="p-4 bg-red-50 border border-red-200 rounded-md">
+                      <div className="flex items-center">
+                        <span className="text-red-800 font-medium">
+                          Erro ao enviar mensagem. Tente novamente ou entre em contato por telefone.
+                        </span>
+                      </div>
+                    </div>
+                  )}
+
                   <Button
                     type="submit"
-                    className="w-full bg-blue-800 hover:bg-blue-900"
+                    disabled={isSubmitting}
+                    className="w-full bg-blue-800 hover:bg-blue-900 disabled:opacity-50"
                   >
-                    Enviar Mensagem
+                    {isSubmitting ? (
+                      <>
+                        <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent mr-2" />
+                        Enviando...
+                      </>
+                    ) : (
+                      'Enviar Mensagem'
+                    )}
                   </Button>
                 </form>
               </CardContent>
@@ -560,15 +590,17 @@ export default function ClientPage() {
               <h4 className="font-semibold mb-4">Contato</h4>
               <ul className="space-y-2 text-sm text-gray-400">
                 <li>(11) 4000-0000</li>
-                <li>contato@juridicoclub.com.br</li>
+                <li>contato@astreiajus.com.br</li>
                 <li>Segunda a Sexta: 8h às 18h</li>
-                <li>Sábado: 8h às 12h</li>
               </ul>
             </div>
           </div>
 
           <div className="border-t border-gray-800 mt-12 pt-8 text-center text-sm text-gray-400">
-            <p>&copy; {new Date().getFullYear()} AstreiaJus. Todos os direitos reservados.</p>
+            <p>
+              &copy; {new Date().getFullYear()} AstreiaJus. Todos os direitos
+              reservados.
+            </p>
           </div>
         </div>
       </footer>

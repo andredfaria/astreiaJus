@@ -3,45 +3,58 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Card, CardContent } from '@/components/ui/card';
+import Link from "next/link";
+
 import FeatureCard from '@/components/FeatureCard';
 import TestimonialCard from '@/components/TestimonialCard';
-import { 
-  Scale, 
-  Users, 
-  TrendingUp, 
-  Clock, 
-  Building, 
-  FileText, 
-  Shield, 
-  Briefcase,
-  User,
+import { Card, CardContent } from '@/components/ui/card';
+import {
   ArrowRight,
+  Briefcase,
+  Building,
   CheckCircle,
-  Star,
-  DollarSign
+  Clock,
+  DollarSign,
+  FileText,
+  Scale,
+  Shield,
+  TrendingUp,
+  User,
+  Users
 } from 'lucide-react';
 import { useState } from 'react';
 
-export default function AdvogadosPage() {
-  const [inscricaoForm, setInscricaoForm] = useState({
-    name: '',
-    email: '',
-    oab: '',
-    estado: '',
-    areas: '',
-    experiencia: '',
-    descricao: ''
-  });
 
-  const handleInscricaoSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Aqui você implementaria o envio do formulário
-    console.log('Inscrição enviada:', inscricaoForm);
-    alert('Inscrição enviada com sucesso! Analisaremos seu perfil e entraremos em contato em breve.');
-    setInscricaoForm({ name: '', email: '', oab: '', estado: '', areas: '', experiencia: '', descricao: '' });
+export default function AdvogadosPage() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    const formData = new FormData(event.currentTarget);
+    
+    try {
+      const response = await fetch('https://formsubmit.co/contato@astreiajus.com.br', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        (event.target as HTMLFormElement).reset();
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+
 
   const areasAtuacao = [
     { icon: Scale, title: 'Direito Civil', description: 'Contratos, responsabilidade civil, família e sucessões' },
@@ -113,7 +126,7 @@ export default function AdvogadosPage() {
               <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
                 Seja um{" "}
                 <span className="text-yellow-400">Advogado Parceiro</span>{" "}
-                astreiaJus
+                AstreiaJus
               </h1>
               <p className="text-xl mb-8 text-gray-100 leading-relaxed">
                 Expanda sua carteira de clientes, tenha renda recorrente e faça
@@ -360,7 +373,15 @@ export default function AdvogadosPage() {
 
           <Card>
             <CardContent className="p-8">
-              <form onSubmit={handleInscricaoSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <input name="_captcha" type="hidden" value="false" />
+                <input name="_template" type="hidden" value="table" />
+                <input
+                  name="_subject"
+                  type="hidden"
+                  value="Nova Inscrição de Advogado - AstreiaJus"
+                />
+                
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <label
@@ -370,17 +391,12 @@ export default function AdvogadosPage() {
                       Nome Completo *
                     </label>
                     <Input
+                      name="name"
                       id="name"
                       type="text"
                       required
-                      value={inscricaoForm.name}
-                      onChange={(e) =>
-                        setInscricaoForm({
-                          ...inscricaoForm,
-                          name: e.target.value,
-                        })
-                      }
                       placeholder="Seu nome completo"
+                      disabled={isSubmitting}
                     />
                   </div>
 
@@ -392,17 +408,12 @@ export default function AdvogadosPage() {
                       E-mail Profissional *
                     </label>
                     <Input
+                      name="email"
                       id="email"
                       type="email"
                       required
-                      value={inscricaoForm.email}
-                      onChange={(e) =>
-                        setInscricaoForm({
-                          ...inscricaoForm,
-                          email: e.target.value,
-                        })
-                      }
                       placeholder="seu@email.com"
+                      disabled={isSubmitting}
                     />
                   </div>
                 </div>
@@ -416,17 +427,12 @@ export default function AdvogadosPage() {
                       Número da OAB *
                     </label>
                     <Input
+                      name="numero_oab"
                       id="oab"
                       type="text"
                       required
-                      value={inscricaoForm.oab}
-                      onChange={(e) =>
-                        setInscricaoForm({
-                          ...inscricaoForm,
-                          oab: e.target.value,
-                        })
-                      }
                       placeholder="123456"
+                      disabled={isSubmitting}
                     />
                   </div>
 
@@ -437,23 +443,20 @@ export default function AdvogadosPage() {
                     >
                       Estado da OAB *
                     </label>
-                    <Select
-                      value={inscricaoForm.estado}
-                      onValueChange={(value) =>
-                        setInscricaoForm({ ...inscricaoForm, estado: value })
-                      }
+                    <select
+                      name="estado_oab"
+                      id="estado"
+                      required
+                      disabled={isSubmitting}
+                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                     >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Selecione o estado" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {estados.map((estado) => (
-                          <SelectItem key={estado} value={estado}>
-                            {estado}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                      <option value="">Selecione o estado</option>
+                      {estados.map((estado) => (
+                        <option key={estado} value={estado}>
+                          {estado}
+                        </option>
+                      ))}
+                    </select>
                   </div>
                 </div>
 
@@ -466,17 +469,12 @@ export default function AdvogadosPage() {
                       Principais Áreas de Atuação *
                     </label>
                     <Input
+                      name="areas_atuacao"
                       id="areas"
                       type="text"
                       required
-                      value={inscricaoForm.areas}
-                      onChange={(e) =>
-                        setInscricaoForm({
-                          ...inscricaoForm,
-                          areas: e.target.value,
-                        })
-                      }
                       placeholder="Ex: Civil, Trabalhista, Previdenciário"
+                      disabled={isSubmitting}
                     />
                   </div>
 
@@ -487,25 +485,19 @@ export default function AdvogadosPage() {
                     >
                       Tempo de Experiência *
                     </label>
-                    <Select
-                      value={inscricaoForm.experiencia}
-                      onValueChange={(value) =>
-                        setInscricaoForm({
-                          ...inscricaoForm,
-                          experiencia: value,
-                        })
-                      }
+                    <select
+                      name="tempo_experiencia"
+                      id="experiencia"
+                      required
+                      disabled={isSubmitting}
+                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                     >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Selecione" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="1-3">1 a 3 anos</SelectItem>
-                        <SelectItem value="3-5">3 a 5 anos</SelectItem>
-                        <SelectItem value="5-10">5 a 10 anos</SelectItem>
-                        <SelectItem value="10+">Mais de 10 anos</SelectItem>
-                      </SelectContent>
-                    </Select>
+                      <option value="">Selecione</option>
+                      <option value="1-3">1 a 3 anos</option>
+                      <option value="3-5">3 a 5 anos</option>
+                      <option value="5-10">5 a 10 anos</option>
+                      <option value="10+">Mais de 10 anos</option>
+                    </select>
                   </div>
                 </div>
 
@@ -517,31 +509,56 @@ export default function AdvogadosPage() {
                     Breve Descrição Profissional
                   </label>
                   <Textarea
+                    name="descricao_profissional"
                     id="descricao"
-                    value={inscricaoForm.descricao}
-                    onChange={(e) =>
-                      setInscricaoForm({
-                        ...inscricaoForm,
-                        descricao: e.target.value,
-                      })
-                    }
                     placeholder="Conte um pouco sobre sua experiência, especializações e o que te motiva na advocacia..."
                     rows={4}
+                    disabled={isSubmitting}
                   />
                 </div>
+
+                {submitStatus === 'success' && (
+                  <div className="p-4 bg-green-50 border border-green-200 rounded-md">
+                    <div className="flex items-center">
+                      <CheckCircle className="h-5 w-5 text-green-500 mr-2" />
+                      <span className="text-green-800 font-medium">
+                        Inscrição enviada com sucesso! Analisaremos seu perfil e entraremos em contato em breve.
+                      </span>
+                    </div>
+                  </div>
+                )}
+
+                {submitStatus === 'error' && (
+                  <div className="p-4 bg-red-50 border border-red-200 rounded-md">
+                    <div className="flex items-center">
+                      <span className="text-red-800 font-medium">
+                        Erro ao enviar inscrição. Tente novamente ou entre em contato por telefone.
+                      </span>
+                    </div>
+                  </div>
+                )}
 
                 <div className="text-center">
                   <Button
                     type="submit"
                     size="lg"
-                    className="bg-blue-800 hover:bg-blue-900 w-full md:w-auto px-12"
+                    disabled={isSubmitting}
+                    className="bg-blue-800 hover:bg-blue-900 w-full md:w-auto px-12 disabled:opacity-50"
                   >
-                    Enviar Inscrição
-                    <ArrowRight className="ml-2 h-5 w-5" />
+                    {isSubmitting ? (
+                      <>
+                        <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent mr-2" />
+                        Enviando...
+                      </>
+                    ) : (
+                      <>
+                        Enviar Inscrição
+                        <ArrowRight className="ml-2 h-5 w-5" />
+                      </>
+                    )}
                   </Button>
                   <p className="text-sm text-gray-500 mt-4">
-                    Analisaremos seu perfil e entraremos em contato em até 48
-                    horas úteis
+                    {isSubmitting ? 'Processando sua inscrição...' : 'Analisaremos seu perfil e entraremos em contato'}
                   </p>
                 </div>
               </form>
@@ -579,8 +596,15 @@ export default function AdvogadosPage() {
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center space-x-2 mb-4">
-                <Scale className="h-8 w-8 text-yellow-400" />
-                <span className="text-xl font-bold">astreiaJus</span>
+                <Link href="/" className="flex items-center space-x-3 group">
+                  <div className="relative">
+                    <img
+                      src="/logo.svg"
+                      alt="AstreiaJus"
+                      className="h-20 transition-transform group-hover:scale-105"
+                    />
+                  </div>
+                </Link>
               </div>
               <p className="text-gray-400 text-sm">
                 A maior plataforma de convênio jurídico do Brasil. Conectando
