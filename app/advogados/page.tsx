@@ -111,13 +111,19 @@ export default function AdvogadosPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
-                Seja um <span className="text-yellow-400">Advogado Parceiro</span> astreiaJus
+                Seja um{" "}
+                <span className="text-yellow-400">Advogado Parceiro</span>{" "}
+                astreiaJus
               </h1>
               <p className="text-xl mb-8 text-gray-100 leading-relaxed">
-                Expanda sua carteira de clientes, tenha renda recorrente e faça parte da maior rede de convênio jurídico do Brasil.
+                Expanda sua carteira de clientes, tenha renda recorrente e faça
+                parte da maior rede de convênio jurídico do Brasil.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold">
+                <Button
+                  size="lg"
+                  className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold"
+                >
                   Quero me Inscrever
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
@@ -127,7 +133,7 @@ export default function AdvogadosPage() {
               </div>
             </div>
             <div className="relative">
-              <img 
+              <img
                 src="https://images.pexels.com/photos/5668473/pexels-photo-5668473.jpeg?auto=compress&cs=tinysrgb&w=800"
                 alt="Advogado profissional"
                 className="rounded-lg shadow-2xl"
@@ -135,7 +141,9 @@ export default function AdvogadosPage() {
               <div className="absolute -bottom-6 -left-6 bg-white text-black p-4 rounded-lg shadow-lg">
                 <div className="flex items-center space-x-2">
                   <CheckCircle className="h-6 w-6 text-green-500" />
-                  <span className="font-semibold">+500 advogados parceiros</span>
+                  <span className="font-semibold">
+                    +500 advogados parceiros
+                  </span>
                 </div>
               </div>
             </div>
@@ -151,10 +159,11 @@ export default function AdvogadosPage() {
               Principais Áreas de Atuação
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Oferecemos oportunidades em diversas especialidades jurídicas para atender toda demanda dos nossos clientes
+              Oferecemos oportunidades em diversas especialidades jurídicas para
+              atender toda demanda dos nossos clientes
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {areasAtuacao.map((area, index) => (
               <FeatureCard key={index} {...area} />
@@ -171,26 +180,43 @@ export default function AdvogadosPage() {
               Como Funciona para Você, Advogado
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Um modelo de parceria transparente e vantajoso para ambas as partes
+              Um modelo de parceria transparente e vantajoso para ambas as
+              partes
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Processo Simplificado</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                Processo Simplificado
+              </h3>
               <div className="space-y-6">
                 {[
-                  { title: 'Receba Demandas', desc: 'Clientes são direcionados para você baseado na sua especialidade e localização' },
-                  { title: 'Atenda com Qualidade', desc: 'Ofereça o melhor atendimento jurídico usando nossa plataforma de suporte' },
-                  { title: 'Receba seus Honorários', desc: 'Pagamentos garantidos e processados automaticamente pela plataforma' },
-                  { title: 'Cresça Conosco', desc: 'Desenvolva sua carreira com suporte contínuo e novas oportunidades' }
+                  {
+                    title: "Receba Demandas",
+                    desc: "Clientes são direcionados para você baseado na sua especialidade e localização",
+                  },
+                  {
+                    title: "Atenda com Qualidade",
+                    desc: "Ofereça o melhor atendimento jurídico usando nossa plataforma de suporte",
+                  },
+                  {
+                    title: "Receba seus Honorários",
+                    desc: "Pagamentos garantidos e processados automaticamente pela plataforma",
+                  },
+                  {
+                    title: "Cresça Conosco",
+                    desc: "Desenvolva sua carreira com suporte contínuo e novas oportunidades",
+                  },
                 ].map((step, index) => (
                   <div key={index} className="flex items-start space-x-4">
                     <div className="w-8 h-8 bg-yellow-500 text-black rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">
                       {index + 1}
                     </div>
                     <div>
-                      <h4 className="font-semibold text-gray-900 mb-1">{step.title}</h4>
+                      <h4 className="font-semibold text-gray-900 mb-1">
+                        {step.title}
+                      </h4>
                       <p className="text-gray-600 text-sm">{step.desc}</p>
                     </div>
                   </div>
@@ -198,7 +224,7 @@ export default function AdvogadosPage() {
               </div>
             </div>
             <div className="relative">
-              <img 
+              <img
                 src="https://images.pexels.com/photos/5668769/pexels-photo-5668769.jpeg?auto=compress&cs=tinysrgb&w=800"
                 alt="Advogado trabalhando"
                 className="rounded-lg shadow-lg"
@@ -226,13 +252,19 @@ export default function AdvogadosPage() {
               Entenda como você será remunerado por cada tipo de atendimento
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-3 gap-8">
             <Card className="border-2 border-gray-200">
               <CardContent className="p-8 text-center">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">Consultas Online</h3>
-                <div className="text-3xl font-bold text-blue-800 mb-4">R$ 80-120</div>
-                <p className="text-gray-600 mb-6">Por consulta realizada via chat ou videochamada</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">
+                  Consultas Online
+                </h3>
+                <div className="text-3xl font-bold text-blue-800 mb-4">
+                  R$ 80-120
+                </div>
+                <p className="text-gray-600 mb-6">
+                  Por consulta realizada via chat ou videochamada
+                </p>
                 <ul className="text-left space-y-2 text-sm text-gray-600">
                   <li>• Duração: até 1 hora</li>
                   <li>• Pagamento em 48h</li>
@@ -240,15 +272,21 @@ export default function AdvogadosPage() {
                 </ul>
               </CardContent>
             </Card>
-            
+
             <Card className="border-2 border-blue-800 ring-2 ring-blue-100 relative">
               <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-blue-800 text-white px-4 py-1 rounded-full text-sm font-medium">
                 Mais Demanda
               </div>
               <CardContent className="p-8 text-center">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">Acompanhamento Processual</h3>
-                <div className="text-3xl font-bold text-blue-800 mb-4">R$ 500-1500</div>
-                <p className="text-gray-600 mb-6">Por processo acompanhado mensalmente</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">
+                  Acompanhamento Processual
+                </h3>
+                <div className="text-3xl font-bold text-blue-800 mb-4">
+                  R$ 500-1500
+                </div>
+                <p className="text-gray-600 mb-6">
+                  Por processo acompanhado mensalmente
+                </p>
                 <ul className="text-left space-y-2 text-sm text-gray-600">
                   <li>• Pagamento mensal</li>
                   <li>• Valor varia por complexidade</li>
@@ -256,12 +294,18 @@ export default function AdvogadosPage() {
                 </ul>
               </CardContent>
             </Card>
-            
+
             <Card className="border-2 border-gray-200">
               <CardContent className="p-8 text-center">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">Contratos e Documentos</h3>
-                <div className="text-3xl font-bold text-blue-800 mb-4">R$ 200-800</div>
-                <p className="text-gray-600 mb-6">Por análise ou elaboração de contratos</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">
+                  Contratos e Documentos
+                </h3>
+                <div className="text-3xl font-bold text-blue-800 mb-4">
+                  R$ 200-800
+                </div>
+                <p className="text-gray-600 mb-6">
+                  Por análise ou elaboração de contratos
+                </p>
                 <ul className="text-left space-y-2 text-sm text-gray-600">
                   <li>• Varia por extensão</li>
                   <li>• Pagamento à vista</li>
@@ -270,10 +314,11 @@ export default function AdvogadosPage() {
               </CardContent>
             </Card>
           </div>
-          
+
           <div className="text-center mt-12">
             <p className="text-gray-600 mb-4">
-              ✓ Pagamentos garantidos • ✓ Sem taxas de adesão • ✓ Suporte completo
+              ✓ Pagamentos garantidos • ✓ Sem taxas de adesão • ✓ Suporte
+              completo
             </p>
           </div>
         </div>
@@ -287,10 +332,11 @@ export default function AdvogadosPage() {
               Depoimentos de Advogados Parceiros
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Veja o que profissionais como você estão dizendo sobre nossa parceria
+              Veja o que profissionais como você estão dizendo sobre nossa
+              parceria
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
               <TestimonialCard key={index} {...testimonial} />
@@ -307,16 +353,20 @@ export default function AdvogadosPage() {
               Inscreva-se como Advogado Parceiro
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Preencha o formulário abaixo e nossa equipe entrará em contato para dar início à parceria
+              Preencha o formulário abaixo e nossa equipe entrará em contato
+              para dar início à parceria
             </p>
           </div>
-          
+
           <Card>
             <CardContent className="p-8">
               <form onSubmit={handleInscricaoSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label
+                      htmlFor="name"
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
                       Nome Completo *
                     </label>
                     <Input
@@ -324,13 +374,21 @@ export default function AdvogadosPage() {
                       type="text"
                       required
                       value={inscricaoForm.name}
-                      onChange={(e) => setInscricaoForm({...inscricaoForm, name: e.target.value})}
+                      onChange={(e) =>
+                        setInscricaoForm({
+                          ...inscricaoForm,
+                          name: e.target.value,
+                        })
+                      }
                       placeholder="Seu nome completo"
                     />
                   </div>
-                  
+
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
                       E-mail Profissional *
                     </label>
                     <Input
@@ -338,15 +396,23 @@ export default function AdvogadosPage() {
                       type="email"
                       required
                       value={inscricaoForm.email}
-                      onChange={(e) => setInscricaoForm({...inscricaoForm, email: e.target.value})}
+                      onChange={(e) =>
+                        setInscricaoForm({
+                          ...inscricaoForm,
+                          email: e.target.value,
+                        })
+                      }
                       placeholder="seu@email.com"
                     />
                   </div>
                 </div>
-                
+
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="oab" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label
+                      htmlFor="oab"
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
                       Número da OAB *
                     </label>
                     <Input
@@ -354,16 +420,29 @@ export default function AdvogadosPage() {
                       type="text"
                       required
                       value={inscricaoForm.oab}
-                      onChange={(e) => setInscricaoForm({...inscricaoForm, oab: e.target.value})}
+                      onChange={(e) =>
+                        setInscricaoForm({
+                          ...inscricaoForm,
+                          oab: e.target.value,
+                        })
+                      }
                       placeholder="123456"
                     />
                   </div>
-                  
+
                   <div>
-                    <label htmlFor="estado" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label
+                      htmlFor="estado"
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
                       Estado da OAB *
                     </label>
-                    <Select value={inscricaoForm.estado} onValueChange={(value) => setInscricaoForm({...inscricaoForm, estado: value})}>
+                    <Select
+                      value={inscricaoForm.estado}
+                      onValueChange={(value) =>
+                        setInscricaoForm({ ...inscricaoForm, estado: value })
+                      }
+                    >
                       <SelectTrigger>
                         <SelectValue placeholder="Selecione o estado" />
                       </SelectTrigger>
@@ -377,10 +456,13 @@ export default function AdvogadosPage() {
                     </Select>
                   </div>
                 </div>
-                
+
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="areas" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label
+                      htmlFor="areas"
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
                       Principais Áreas de Atuação *
                     </label>
                     <Input
@@ -388,16 +470,32 @@ export default function AdvogadosPage() {
                       type="text"
                       required
                       value={inscricaoForm.areas}
-                      onChange={(e) => setInscricaoForm({...inscricaoForm, areas: e.target.value})}
+                      onChange={(e) =>
+                        setInscricaoForm({
+                          ...inscricaoForm,
+                          areas: e.target.value,
+                        })
+                      }
                       placeholder="Ex: Civil, Trabalhista, Previdenciário"
                     />
                   </div>
-                  
+
                   <div>
-                    <label htmlFor="experiencia" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label
+                      htmlFor="experiencia"
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
                       Tempo de Experiência *
                     </label>
-                    <Select value={inscricaoForm.experiencia} onValueChange={(value) => setInscricaoForm({...inscricaoForm, experiencia: value})}>
+                    <Select
+                      value={inscricaoForm.experiencia}
+                      onValueChange={(value) =>
+                        setInscricaoForm({
+                          ...inscricaoForm,
+                          experiencia: value,
+                        })
+                      }
+                    >
                       <SelectTrigger>
                         <SelectValue placeholder="Selecione" />
                       </SelectTrigger>
@@ -410,27 +508,40 @@ export default function AdvogadosPage() {
                     </Select>
                   </div>
                 </div>
-                
+
                 <div>
-                  <label htmlFor="descricao" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label
+                    htmlFor="descricao"
+                    className="block text-sm font-medium text-gray-700 mb-2"
+                  >
                     Breve Descrição Profissional
                   </label>
                   <Textarea
                     id="descricao"
                     value={inscricaoForm.descricao}
-                    onChange={(e) => setInscricaoForm({...inscricaoForm, descricao: e.target.value})}
+                    onChange={(e) =>
+                      setInscricaoForm({
+                        ...inscricaoForm,
+                        descricao: e.target.value,
+                      })
+                    }
                     placeholder="Conte um pouco sobre sua experiência, especializações e o que te motiva na advocacia..."
                     rows={4}
                   />
                 </div>
-                
+
                 <div className="text-center">
-                  <Button type="submit" size="lg" className="bg-blue-800 hover:bg-blue-900 w-full md:w-auto px-12">
+                  <Button
+                    type="submit"
+                    size="lg"
+                    className="bg-blue-800 hover:bg-blue-900 w-full md:w-auto px-12"
+                  >
                     Enviar Inscrição
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                   <p className="text-sm text-gray-500 mt-4">
-                    Analisaremos seu perfil e entraremos em contato em até 48 horas úteis
+                    Analisaremos seu perfil e entraremos em contato em até 48
+                    horas úteis
                   </p>
                 </div>
               </form>
@@ -446,9 +557,14 @@ export default function AdvogadosPage() {
             Pronto para Expandir sua Carreira?
           </h2>
           <p className="text-xl text-gray-800 mb-8 max-w-3xl mx-auto">
-            Junte-se a centenas de advogados que já estão crescendo conosco. Comece hoje mesmo sua jornada como parceiro astreiaJus.
+            Junte-se a centenas de advogados que já estão crescendo conosco.
+            Comece hoje mesmo sua jornada como parceiro astreiaJus.
           </p>
-          <Button asChild size="lg" className="bg-black text-white hover:bg-gray-800">
+          <Button
+            asChild
+            size="lg"
+            className="bg-black text-white hover:bg-gray-800"
+          >
             <a href="#inscricao">
               Quero me Inscrever Agora
               <ArrowRight className="ml-2 h-5 w-5" />
@@ -467,10 +583,11 @@ export default function AdvogadosPage() {
                 <span className="text-xl font-bold">astreiaJus</span>
               </div>
               <p className="text-gray-400 text-sm">
-                A maior plataforma de convênio jurídico do Brasil. Conectando clientes e advogados de forma simples e eficiente.
+                A maior plataforma de convênio jurídico do Brasil. Conectando
+                clientes e advogados de forma simples e eficiente.
               </p>
             </div>
-            
+
             <div>
               <h4 className="font-semibold mb-4">Para Advogados</h4>
               <ul className="space-y-2 text-sm text-gray-400">
@@ -480,7 +597,7 @@ export default function AdvogadosPage() {
                 <li>Processo de Inscrição</li>
               </ul>
             </div>
-            
+
             <div>
               <h4 className="font-semibold mb-4">Suporte</h4>
               <ul className="space-y-2 text-sm text-gray-400">
@@ -490,7 +607,7 @@ export default function AdvogadosPage() {
                 <li>Política de Pagamentos</li>
               </ul>
             </div>
-            
+
             <div>
               <h4 className="font-semibold mb-4">Contato Parceiros</h4>
               <ul className="space-y-2 text-sm text-gray-400">
@@ -501,9 +618,12 @@ export default function AdvogadosPage() {
               </ul>
             </div>
           </div>
-          
+
           <div className="border-t border-gray-800 mt-12 pt-8 text-center text-sm text-gray-400">
-            <p>&copy; 2024 astreiaJus. Todos os direitos reservados.</p>
+            <p>
+              &copy; {new Date().getFullYear()} AstreiaJus. Todos os direitos
+              reservados.
+            </p>
           </div>
         </div>
       </footer>
