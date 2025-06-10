@@ -36,10 +36,35 @@ export default function AdvogadosPage() {
 
     const formData = new FormData(event.currentTarget);
     
+    // Extrair todos os dados do formulário
+    const subject = formData.get("_subject") || "Nova Inscrição de Advogado - AstreiaJus";
+    const name = formData.get("name") || "";
+    const email = formData.get("email") || "";
+    const numeroOab = formData.get("numero_oab") || "";
+    const estadoOab = formData.get("estado_oab") || "";
+    const areasAtuacao = formData.get("areas_atuacao") || "";
+    const tempoExperiencia = formData.get("tempo_experiencia") || "";
+    const descricaoProfissional = formData.get("descricao_profissional") || "";
+
+    // Criar mensagem concatenada com todos os dados
+    const message = `${subject}
+
+Nome: ${name}
+Email: ${email}
+Número OAB: ${numeroOab}
+Estado OAB: ${estadoOab}
+Áreas de Atuação: ${areasAtuacao}
+Tempo de Experiência: ${tempoExperiencia}
+Descrição Profissional: ${descricaoProfissional}`;
+
+    // Criar novo FormData apenas com o campo message
+    const submitFormData = new FormData();
+    submitFormData.append('message', message);
+
     try {
       const response = await fetch('https://formsubmit.co/contato@astreiajus.com.br', {
         method: 'POST',
-        body: formData,
+        body: submitFormData,
       });
 
       if (response.ok) {
@@ -381,7 +406,7 @@ export default function AdvogadosPage() {
                   type="hidden"
                   value="Nova Inscrição de Advogado - AstreiaJus"
                 />
-                
+
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <label
@@ -517,22 +542,24 @@ export default function AdvogadosPage() {
                   />
                 </div>
 
-                {submitStatus === 'success' && (
+                {submitStatus === "success" && (
                   <div className="p-4 bg-green-50 border border-green-200 rounded-md">
                     <div className="flex items-center">
                       <CheckCircle className="h-5 w-5 text-green-500 mr-2" />
                       <span className="text-green-800 font-medium">
-                        Inscrição enviada com sucesso! Analisaremos seu perfil e entraremos em contato em breve.
+                        Inscrição enviada com sucesso! Analisaremos seu perfil e
+                        entraremos em contato em breve.
                       </span>
                     </div>
                   </div>
                 )}
 
-                {submitStatus === 'error' && (
+                {submitStatus === "error" && (
                   <div className="p-4 bg-red-50 border border-red-200 rounded-md">
                     <div className="flex items-center">
                       <span className="text-red-800 font-medium">
-                        Erro ao enviar inscrição. Tente novamente ou entre em contato por telefone.
+                        Erro ao enviar inscrição. Tente novamente ou entre em
+                        contato por telefone.
                       </span>
                     </div>
                   </div>
@@ -558,7 +585,9 @@ export default function AdvogadosPage() {
                     )}
                   </Button>
                   <p className="text-sm text-gray-500 mt-4">
-                    {isSubmitting ? 'Processando sua inscrição...' : 'Analisaremos seu perfil e entraremos em contato'}
+                    {isSubmitting
+                      ? "Processando sua inscrição..."
+                      : "Analisaremos seu perfil e entraremos em contato"}
                   </p>
                 </div>
               </form>
@@ -599,7 +628,7 @@ export default function AdvogadosPage() {
                 <Link href="/" className="flex items-center space-x-3 group">
                   <div className="relative">
                     <img
-                      src="/logo.svg"
+                      src="/logo-letra-branco.png"
                       alt="AstreiaJus"
                       className="h-20 transition-transform group-hover:scale-105"
                     />

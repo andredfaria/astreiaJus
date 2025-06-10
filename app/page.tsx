@@ -1,26 +1,24 @@
 'use client';
 
+import FeatureCard from '@/components/FeatureCard';
+import PricingCard from '@/components/PricingCard';
+import TestimonialCard from '@/components/TestimonialCard';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Card, CardContent } from '@/components/ui/card';
-import FeatureCard from '@/components/FeatureCard';
-import TestimonialCard from '@/components/TestimonialCard';
-import PricingCard from '@/components/PricingCard';
-import { 
-  Shield, 
-  Clock, 
-  MapPin, 
-  DollarSign, 
-  Users, 
-  CheckCircle, 
+import {
   ArrowRight,
-  Phone,
-  Mail,
-  MessageSquare,
+  CheckCircle,
+  Clock,
+  DollarSign,
   Gift,
-  Star,
-  Handshake
+  Handshake,
+  Mail,
+  MapPin,
+  MessageSquare,
+  Phone,
+  Shield
 } from 'lucide-react';
 import { useState } from 'react';
 
