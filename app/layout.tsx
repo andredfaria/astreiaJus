@@ -6,8 +6,8 @@ import Navigation from '@/components/Navigation';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'AstreiaJus - Convênio Jurídico com Clube de Vantagens',
-  description: 'Acesso facilitado a serviços jurídicos com preços reduzidos. Planos a partir de R$ 59,90/mês.',
+  title: 'AstreiaJus - Advocacia Acessível e Inclusiva | Serviços Jurídicos com Tecnologia',
+  description: 'Plataforma que democratiza o acesso à advocacia de qualidade. Valores até 50% abaixo da tabela OAB, Clube de Vantagens exclusivo e rede de advogados especializados. Adesão a partir de R$ 89,90/mês.',
 };
 
 export default function RootLayout({

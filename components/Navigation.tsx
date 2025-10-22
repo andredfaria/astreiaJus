@@ -30,29 +30,49 @@ export default function Navigation() {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-6">
             <Link
-              href="/"
-              className={`text-sm font-medium transition-colors hover:text-blue-800 ${
-                !isAdvogadosPage ? "text-blue-800" : "text-gray-600"
-              }`}
+              href="/#home"
+              className="text-sm font-medium transition-colors hover:text-blue-800 text-gray-700"
             >
-              Para Clientes
+              Home
             </Link>
             <Link
-              href="/advogados"
-              className={`text-sm font-medium transition-colors hover:text-blue-800 ${
-                isAdvogadosPage ? "text-blue-800" : "text-gray-600"
-              }`}
+              href="/#quem-somos"
+              className="text-sm font-medium transition-colors hover:text-blue-800 text-gray-700"
             >
-              Para Advogados
+              Quem Somos
+            </Link>
+            <Link
+              href="/#servicos"
+              className="text-sm font-medium transition-colors hover:text-blue-800 text-gray-700"
+            >
+              Serviços
+            </Link>
+            <Link
+              href="/#clientes"
+              className="text-sm font-medium transition-colors hover:text-blue-800 text-gray-700"
+            >
+              Clientes
+            </Link>
+            <Link
+              href="/astreia-clube"
+              className="text-sm font-medium transition-colors hover:text-blue-800 text-gray-700"
+            >
+              AstreiaClube
+            </Link>
+            <Link
+              href="/#contato"
+              className="text-sm font-medium transition-colors hover:text-blue-800 text-gray-700"
+            >
+              Contato
             </Link>
             <Button
               asChild
-              className="bg-blue-800 hover:bg-blue-900 text-white"
+              className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold"
             >
-              <Link href={isAdvogadosPage ? "#inscricao" : "#planos"}>
-                {isAdvogadosPage ? "Quero me inscrever" : "Assinar Agora"}
+              <Link href="/#adesao">
+                Aderir Agora
               </Link>
             </Button>
           </div>
@@ -78,32 +98,56 @@ export default function Navigation() {
           <div className="md:hidden border-t border-gray-100 py-4">
             <div className="flex flex-col space-y-4">
               <Link
-                href="/"
-                className={`text-sm font-medium transition-colors hover:text-blue-800 ${
-                  !isAdvogadosPage ? "text-blue-800" : "text-gray-600"
-                }`}
+                href="/#home"
+                className="text-sm font-medium transition-colors hover:text-blue-800 text-gray-700"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Para Clientes
+                Home
               </Link>
               <Link
-                href="/advogados"
-                className={`text-sm font-medium transition-colors hover:text-blue-800 ${
-                  isAdvogadosPage ? "text-blue-800" : "text-gray-600"
-                }`}
+                href="/#quem-somos"
+                className="text-sm font-medium transition-colors hover:text-blue-800 text-gray-700"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Para Advogados
+                Quem Somos
+              </Link>
+              <Link
+                href="/#servicos"
+                className="text-sm font-medium transition-colors hover:text-blue-800 text-gray-700"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Serviços
+              </Link>
+              <Link
+                href="/#clientes"
+                className="text-sm font-medium transition-colors hover:text-blue-800 text-gray-700"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Clientes
+              </Link>
+              <Link
+                href="/astreia-clube"
+                className="text-sm font-medium transition-colors hover:text-blue-800 text-gray-700"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                AstreiaClube
+              </Link>
+              <Link
+                href="/#contato"
+                className="text-sm font-medium transition-colors hover:text-blue-800 text-gray-700"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Contato
               </Link>
               <Button
                 asChild
-                className="bg-blue-800 hover:bg-blue-900 text-white w-full"
+                className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold w-full"
               >
                 <Link
-                  href={isAdvogadosPage ? "#inscricao" : "#planos"}
+                  href="/#adesao"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  {isAdvogadosPage ? "Quero me inscrever" : "Assinar Agora"}
+                  Aderir Agora
                 </Link>
               </Button>
             </div>

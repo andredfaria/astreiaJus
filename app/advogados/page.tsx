@@ -94,21 +94,21 @@ Descrição Profissional: ${descricaoProfissional}`;
     {
       name: 'Dr. Carlos Mendes',
       role: 'Advogado Trabalhista - OAB/SP 123456',
-      content: 'Desde que me tornei parceiro do astreiaJus, minha carteira de clientes cresceu 300%. A plataforma me conecta com pessoas que realmente precisam de ajuda jurídica.',
+      content: 'Desde que me tornei membro da Rede AstreiaJus, minha carteira de clientes cresceu significativamente. A plataforma me conecta com pessoas que realmente precisam de ajuda jurídica e valoriza nosso trabalho.',
       rating: 5,
       image: 'https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
     },
     {
       name: 'Dra. Fernanda Lima',
       role: 'Advogada Civilista - OAB/RJ 789012',
-      content: 'A plataforma é muito bem organizada e o suporte é excelente. Consigo atender mais clientes e ter uma renda mais estável como advogada parceira.',
+      content: 'A plataforma AstreiaJus é muito bem organizada e o suporte é excelente. A tecnologia realmente facilita meu trabalho e consigo atender mais clientes com qualidade.',
       rating: 5,
       image: 'https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
     },
     {
       name: 'Dr. Roberto Silva',
       role: 'Advogado Previdenciário - OAB/MG 345678',
-      content: 'O astreiaJus me permitiu focar no que eu mais gosto: ajudar pessoas. A gestão administrativa é toda feita pela plataforma, o que facilita muito meu trabalho.',
+      content: 'O AstreiaJus me permitiu focar no que eu mais gosto: ajudar pessoas com questões jurídicas. A tecnologia da plataforma facilita muito nosso trabalho diário.',
       rating: 5,
       image: 'https://images.pexels.com/photos/1300402/pexels-photo-1300402.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
     }
@@ -154,8 +154,9 @@ Descrição Profissional: ${descricaoProfissional}`;
                 AstreiaJus
               </h1>
               <p className="text-xl mb-8 text-gray-100 leading-relaxed">
-                Expanda sua carteira de clientes, tenha renda recorrente e faça
-                parte da maior rede de convênio jurídico do Brasil.
+                Faça parte da Rede de Advogados AstreiaJus. Juntos vamos democratizar 
+                o acesso à advocacia de qualidade, valorizando os profissionais do Direito 
+                e expandindo sua carteira de clientes.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
